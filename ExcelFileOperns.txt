@@ -1,0 +1,60 @@
+'Create a file System Object
+Set fso = CreateObject("Scripting.FileSystemObject")
+'Create an Excel Object
+Set objExcel = CreateObject("Excel.Application")
+DefaultFilePath="D:\VB\"
+if fso.FolderExists(objExcel.DefaultFilePath) then  
+Set oFolder = FSO.GetFolder(objExcel.DefaultFilePath) 
+For each aFile in oFolder.Files                
+If Right(LCase(aFile.Name),4) = ".xls" Then                    
+'Open the workbook for Write Operation
+objExcel.Workbooks.Open(aFile.Name)                    
+objExcel.Visible = True    
+objExcel.Workbooks.Add
+objExcel.Cells(1, 1).Value = "Roll No"
+objExcel.Cells(1, 2).Value = "Name"
+objExcel.Cells(2, 1).Value = "1"
+objExcel.Cells(2, 2).Value = "Diju"
+objExcel.Cells(3, 1).Value = "2"
+objExcel.Cells(3, 2).Value = "Shelma"
+objExcel.Cells(4, 1).Value = "3"
+objExcel.Cells(4, 2).Value = "Geethu"
+objExcel.ActiveWorkBook.SaveAs "D:\VB\shel.xls"
+objExcel.Application.DisplayAlerts = False                     
+objExcel.ActiveWorkBook.Close              
+End If            
+Next       
+Set oFolder = Nothing   
+end if    
+'set file system object and excel object to nothing
+Set objExcel=Nothing
+Set fso=Nothing
+
+
+'To read the values from the Excel
+Set fso = CreateObject("Scripting.FileSystemObject")
+Set objExcel = CreateObject("Excel.Application")
+DefaultFilePath="D:\VB\"
+if fso.FolderExists(objExcel.DefaultFilePath) then  
+Set oFolder = FSO.GetFolder(objExcel.DefaultFilePath) 
+For each aFile in oFolder.Files                
+If Right(LCase(aFile.Name),4) = ".xls" Then
+'Open the workbook for Read Operation                    
+objExcel.Workbooks.Open(aFile.Name)                    
+objExcel.Visible = True    
+'set rowvalue to 2 inorder to read only the values(not header)entered in cells
+intRow = 2
+Do Until objExcel.Cells(intRow,1).Value = ""
+    MsgBox "Roll No: " & objExcel.Cells(intRow, 1).Value
+    Msgbox "Name: " & objExcel.Cells(intRow, 2).Value
+    intRow = intRow + 1
+Loop
+objExcel.Application.DisplayAlerts = False                     
+objExcel.ActiveWorkBook.Close              
+End If            
+Next       
+Set oFolder = Nothing   
+End if
+'Set the used objects Nothing
+Set objExcel=Nothing
+Set fso=Nothing
