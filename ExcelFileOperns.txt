@@ -2,7 +2,9 @@
 Set fso = CreateObject("Scripting.FileSystemObject")
 'Create an Excel Object
 Set objExcel = CreateObject("Excel.Application")
+'Set the path
 DefaultFilePath="D:\VB\"
+'Check for folder exists and pointing to the folder in location
 if fso.FolderExists(objExcel.DefaultFilePath) then  
 Set oFolder = FSO.GetFolder(objExcel.DefaultFilePath) 
 For each aFile in oFolder.Files                
@@ -29,7 +31,6 @@ end if
 'set file system object and excel object to nothing
 Set objExcel=Nothing
 Set fso=Nothing
-
 
 'To read the values from the Excel
 Set fso = CreateObject("Scripting.FileSystemObject")
