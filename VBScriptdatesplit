@@ -1,0 +1,7 @@
+Dim newday
+newday= date()
+msgbox "Today is " &newday
+newdaysplit = split(newday,"-",3)
+for each i in newdaysplit
+msgbox i
+Next
